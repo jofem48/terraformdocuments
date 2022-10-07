@@ -4,9 +4,7 @@ Terraform module to provision base infrastructure on AWS for on-boarding new app
 
 ## Module wrappers
 
-Users of this Terraform module can create multiple similar resources by using [`for_each`](https://www.terraform.io/language/meta-arguments/for_each) meta-argument within `module` block which became available in Terraform 0.13.
-
-Users of Terragrunt can achieve similar results by using modules provided in the [wrappers](https://github.com/terraform-aws-modules/terraform-aws-ec2-instance/tree/master/wrappers) directory, if they prefer to reduce amount of configuration files.
+Users of this Terraform module can create multiple similar resources by using [`for_each`](https://www.terraform.io/language/meta-arguments/for_each) meta-argument within `module` block which became available in Terraform 0.13
 
 ### Provisioning VPC in AWS
 
@@ -223,7 +221,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_ami"></a> [ami](#input\_ami) | ID of AMI to use for the instance | `string` | `""` | no |
-
+| <a name="env_name"></a> [env_name](#input\_env_name) | 3-character name of environment (i.e. tec, ted) | `string` | `""` | yes |
 
 ## Outputs
 
