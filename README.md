@@ -8,7 +8,7 @@ Users of this Terraform module can create multiple similar resources by using [`
 
 Users of Terragrunt can achieve similar results by using modules provided in the [wrappers](https://github.com/terraform-aws-modules/terraform-aws-ec2-instance/tree/master/wrappers) directory, if they prefer to reduce amount of configuration files.
 
-## Provisioning VPC in AWS
+### Provisioning VPC in AWS
 
 In order to provision the VPC we have defined locals block to create variables based on values passed in tfvars file while running the terraform code. Locals block is created to generate tag_name, public-subnet-list and private-subnet-list.
 
@@ -60,7 +60,7 @@ Resource will use `vpc_id`, `ipv6_cidr_block` and `ipv6_ipam_pool_id`. `ipv6_cid
 PASTE CODE SNIPPET HERE FROM LINE 74 - 82 HERE
 ```
 
-## Create DHCP Options Set
+### Create DHCP Options Set
 
 Resource [aws_vpc_dhcp_options](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options) is used to provide VPC DHCP Options resource. We are currently using a conditional [count](https://www.terraform.io/language/meta-arguments/count) block which depends the `enable_dhcp_options` variable. In case enable_dhcp_options is set to false, count will be set to 0 and it will not be provisioned. In case enable_dhcp_options is set to true, count will be set to 1 which will provision single DHCP options. 
 
@@ -70,7 +70,7 @@ Resource will use `n1fordns`, `domain_name_servers`, `ntp_servers`, `netbios_nam
 PASTE CODE SNIPPET HERE FROM LINE 99 - 113 HERE
 ```
 
-## Associate DHCP Options Set to VPC
+### Associate DHCP Options Set to VPC
 
 Resource [aws_vpc_dhcp_options_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options_association) is used to associate VPC DHCP Options with VPC. We are currently using a conditional [count](https://www.terraform.io/language/meta-arguments/count) block which depends the `associate_dhcp_options` variable. In case associate_dhcp_options is set to false, count will be set to 0 and it will not be provisioned. In case associate_dhcp_options is set to true, count will be set to 1 which will associate DHCP options with VPC. 
 
@@ -80,7 +80,7 @@ Resource will use `vpc_id`. `vpc_id` can fetch ID from end user or can automatic
 PASTE CODE SNIPPET HERE FROM LINE 120 - 126 HERE
 ```
 
-## Create Public Subnet inside VPC
+### Create Public Subnet inside VPC
 
 Resource [aws_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) is used to provision Subnet within VPC. We are currently using a conditional [count](https://www.terraform.io/language/meta-arguments/count) block which depends the `create_public_subnets` variable and length of `public-subnet-list`.  
 
@@ -90,7 +90,7 @@ Resource will use `vpc_id` and `map_public_ip_on_launch`. `cidr_block` and `avai
 PASTE CODE SNIPPET HERE FROM LINE 132 - 147 HERE
 ```
 
-## Create Private Subnet inside VPC
+### Create Private Subnet inside VPC
 
 Resource [aws_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) is used to provision Subnet within VPC. We are currently using a conditional [count](https://www.terraform.io/language/meta-arguments/count) block which depends the `create_private_subnets` variable and length of `private-subnet-list`.  
 
@@ -100,7 +100,7 @@ Resource will use `vpc_id` and `map_public_ip_on_launch`. `cidr_block` and `avai
 PASTE CODE SNIPPET HERE FROM LINE 153 - 166 HERE
 ```
 
-## Create AWS Security Groups
+### Create AWS Security Groups
 
 Resource [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) is used to provision a Security Group resource. We are currently using a conditional [count](https://www.terraform.io/language/meta-arguments/count) block which depends the `create_security_group` variable. In case create_security_group is set to true, only then security group will be created else it will not be provisioned. We are adding Ingress and Egress rules via dynamic block which will help us loop over a map to add n number of rules without writting the code again and again.
 
@@ -238,4 +238,4 @@ No modules.
 
 ## Authors
 
-Module is maintained by COMPANY.
+Module is maintained by NAME-HERE.
